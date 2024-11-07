@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card">
+    <div class="card-header bg-success text-white">
+        <h4>Claim Money</h4>
+    </div>
+    <div class="card-body">
+        <h5>Amount: {{ claim.amount }} {{ claim.asset_code }}</h5>
+        <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label>Choose claim option:</label>
+                <select name="claim_choice" class="form-control" required>
+                    <option value="gift_card">Convert to Gift Card</option>
+                    <option value="wallet">Send to My Wallet</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Claim</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

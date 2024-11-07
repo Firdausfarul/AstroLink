@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card">
+    <div class="card-header bg-success text-white">
+        <h4>Send Money</h4>
+    </div>
+    <div class="card-body">
+        <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label>Amount</label>
+                <input type="number" step="0.0000001" name="amount" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label>Asset</label>
+                <select name="asset_code" class="form-control" required>
+                    <option value="USDC">USDC</option>
+                    <option value="XLM">XLM</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label>Recipient Email (Optional)</label>
+                <input type="email" name="recipient_email" class="form-control">
+                <small class="text-muted">Leave blank to generate a claim link</small>
+            </div>
+            <button type="submit" class="btn btn-primary">Send</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

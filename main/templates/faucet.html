@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card shadow-sm">
+            <div class="card-header bg-success text-white">
+                <h4 class="mb-0">💧 Stellar Faucet</h4>
+            </div>
+            <div class="card-body">
+                <div class="alert alert-info">
+                    This faucet will send:
+                    <ul class="mb-0">
+                        <li>100 XLM</li>
+                        <li>100 USDC</li>
+                    </ul>
+                </div>
+                
+                <form method="post">
+                    {% csrf_token %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    
+                    <div class="mb-3">
+                        <label for="destination" class="form-label">Stellar Address</label>
+                        <input type="text" 
+                               name="destination" 
+                               class="form-control" 
+                               required
+                               placeholder="G...">
+                        <div class="form-text">Enter your Stellar public key</div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary w-100">
+                        Request Tokens
+                    </button>
+                </form>
+                
+                <div class="mt-4">
+                    <h5>How it works:</h5>
+                    <ol class="small text-muted">
+                        <li>Enter your Stellar public key</li>
+                        <li>If your account doesn't exist, it will be created</li>
+                        <li>A trustline for USDC will be established</li>
+                        <li>You'll receive 100 XLM and 100 USDC</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
